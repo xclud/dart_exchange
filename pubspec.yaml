@@ -4,7 +4,7 @@ version: 0.0.1
 repository: https://github.com/xclud/dart_exchange
 
 environment:
-  sdk: '>=2.12.0'
+  sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
   decimal: ^2.2.0
