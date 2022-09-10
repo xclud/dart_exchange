@@ -11,6 +11,8 @@ abstract class Exchange {
   Stream<List<PriceVolume>> getMarketDepth(Market market);
   Stream<OrderBook> getMarketOrderBookStream(Market market);
   Stream<MarketStat> getMarketStatStream(Market market);
+  Future<List<OrderType>> getSupportedOrderTypes(Market market);
+  Stream<List<MarketTrade>> getMarketTradesStream(Market market);
 }
 
 class Asset {
@@ -84,4 +86,26 @@ class MarketStat {
   final Decimal? open;
   final Decimal? close;
   final Decimal? change;
+}
+
+enum OrderType {
+  limit,
+  market,
+  stopLimit,
+  stopLoss,
+  trail,
+}
+
+class MarketTrade {
+  const MarketTrade({
+    required this.isBuy,
+    required this.price,
+    required this.volume,
+    required this.timestamp,
+  });
+
+  final bool isBuy;
+  final Decimal price;
+  final Decimal volume;
+  final DateTime timestamp;
 }
