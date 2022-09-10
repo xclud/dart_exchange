@@ -14,6 +14,13 @@ abstract class Exchange {
   Stream<MarketStat> getMarketStatStream(Market market);
   Future<List<OrderType>> getSupportedOrderTypes(Market market);
   Stream<List<MarketTrade>> getMarketTradesStream(Market market);
+
+  Future<List<Candle>> getCandles({
+    required Market market,
+    required DateTime start,
+    required DateTime end,
+    required Duration resolution,
+  });
 }
 
 class Asset {
@@ -109,4 +116,22 @@ class MarketTrade {
   final Decimal price;
   final Decimal volume;
   final DateTime timestamp;
+}
+
+class Candle {
+  const Candle({
+    required this.time,
+    required this.open,
+    required this.close,
+    required this.high,
+    required this.low,
+    required this.volume,
+  });
+
+  final int time;
+  final double open;
+  final double close;
+  final double high;
+  final double low;
+  final double volume;
 }
