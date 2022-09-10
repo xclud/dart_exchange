@@ -9,8 +9,7 @@ abstract class Exchange {
   String get name;
   Stream<List<Market>> getMarketsStream();
   Future<List<Asset>> getAssets();
-  Stream<List<PriceVolume>> getMarketDepth(Market market);
-  Stream<OrderBook> getMarketOrderBookStream(Market market);
+  Stream<MarketDepth> getMarketDepth(Market market);
   Stream<MarketStat> getMarketStatStream(Market market);
   Future<List<OrderType>> getSupportedOrderTypes(Market market);
   Stream<List<MarketTrade>> getMarketTradesStream(Market market);
@@ -48,24 +47,26 @@ class Market {
   final MarketStat? stat;
 }
 
-class PriceVolume {
-  const PriceVolume({
+class MarketDepthItem {
+  const MarketDepthItem({
     required this.price,
     required this.volume,
+    required this.total,
   });
 
   final Decimal price;
   final Decimal volume;
+  final Decimal total;
 }
 
-class OrderBook {
-  const OrderBook({
+class MarketDepth {
+  const MarketDepth({
     required this.asks,
     required this.bids,
   });
 
-  final List<PriceVolume> asks;
-  final List<PriceVolume> bids;
+  final List<MarketDepthItem> asks;
+  final List<MarketDepthItem> bids;
 }
 
 class MarketStat {
