@@ -6,6 +6,7 @@ import 'package:decimal/decimal.dart';
 abstract class Exchange {
   const Exchange();
 
+  String get name;
   Stream<List<Market>> getMarketsStream();
   Future<List<Asset>> getAssets();
   Stream<List<PriceVolume>> getMarketDepth(Market market);
