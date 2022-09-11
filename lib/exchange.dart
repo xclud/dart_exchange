@@ -107,13 +107,11 @@ enum OrderType {
 
 class MarketTrade {
   const MarketTrade({
-    required this.isBuy,
     required this.price,
     required this.volume,
     required this.timestamp,
   });
 
-  final bool isBuy;
   final Decimal price;
   final Decimal volume;
   final DateTime timestamp;
