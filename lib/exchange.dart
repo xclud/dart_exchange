@@ -3,15 +3,35 @@ library exchange;
 
 import 'package:decimal/decimal.dart';
 
+abstract class MarketStream {
+  MarketStream(this.market);
+
+  final Market market;
+
+  final latestDeals = <MarketTrade>[];
+  final latestBids = <MarketDepthItem>[];
+  final latestAsks = <MarketDepthItem>[];
+
+  Stream<List<MarketTrade>> get deals;
+  Stream<MarketDepth> get depths;
+}
+
 abstract class Exchange {
   const Exchange();
 
   String get name;
+
+  MarketStream getMarket(Market market);
+
   Stream<List<Market>> getMarketsStream();
   Future<List<Asset>> getAssets();
+
+  @Deprecated('')
   Stream<MarketDepth> getMarketDepth(Market market);
   Stream<MarketStat> getMarketStatStream(Market market);
   Future<List<OrderType>> getSupportedOrderTypes(Market market);
+
+  @Deprecated('')
   Stream<List<MarketTrade>> getMarketTradesStream(Market market);
 
   Future<List<Candle>> getCandles({
