@@ -1,3 +1,7 @@
+## 0.0.4
+
+* Market depth.
+
 ## 0.0.3
 
 * Adds even more abstractions.
